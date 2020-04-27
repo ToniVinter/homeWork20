@@ -22,8 +22,8 @@ public class CountryService {
 
     public String getCapitalOfCountry(String country){
         return countries.stream()
-                .filter(c -> c.getCapital().equals(country))
-                .map(c -> c.getName())
+                .filter(c -> c.getName().equals(country))
+                .map(c -> c.getCapital())
                 .collect(Collectors.joining());
 
     }
@@ -38,10 +38,11 @@ public class CountryService {
 
     }
 
-    public long getCountriesInContient(String continent){
+    public List<String> getCountriesInContient(String continent){
         return countries.stream()
                 .filter(s -> s.getContinent().equals(continent))
-                .count();
+                .map(s -> s.getName())
+                .collect(Collectors.toList());
     }
 
     public List<String> getCountryNeighbours(String country){
@@ -89,15 +90,4 @@ public class CountryService {
                         (c1,c2) -> Stream.concat(c1.stream(),c2.stream())
                                          .collect(Collectors.toList())));
     }
-
-
-
-
-
-
-
-
-
-
-
 }
