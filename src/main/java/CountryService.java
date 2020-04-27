@@ -20,9 +20,9 @@ public class CountryService {
                 .collect(toList());
     }
 
-    public String getCapitalOfCoutnry(String country){
+    public String getCapitalOfCountry(String country){
         return countries.stream()
-                .filter(c -> c.getName().equals(country))
+                .filter(c -> c.getCapital().equals(country))
                 .map(c -> c.getName())
                 .collect(Collectors.joining());
 
