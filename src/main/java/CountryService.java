@@ -55,7 +55,7 @@ public class CountryService {
 
     public List<Country> getCountriesByContinentPopulation(String continent, long population){
         return countries.stream()
-                .filter(c -> c.getContinent().equals(continent) && c.getPopulation() == population)
+                .filter(c -> c.getContinent().equals(continent) && c.getPopulation() < population)
                 .collect(Collectors.toList());
     }
 
