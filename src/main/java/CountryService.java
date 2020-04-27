@@ -20,10 +20,10 @@ public class CountryService {
                 .collect(toList());
     }
 
-    public String getCapitalOfCoutnry(String country){
+    public String getCapitalOfCountry(String country){
         return countries.stream()
                 .filter(c -> c.getName().equals(country))
-                .map(c -> c.getName())
+                .map(c -> c.getCapital())
                 .collect(Collectors.joining());
 
     }
@@ -38,10 +38,11 @@ public class CountryService {
 
     }
 
-    public long getCountriesInContient(String continent){
+    public List<String> getCountriesInContient(String continent){
         return countries.stream()
                 .filter(s -> s.getContinent().equals(continent))
-                .count();
+                .map(s -> s.getName())
+                .collect(Collectors.toList());
     }
 
     public List<String> getCountryNeighbours(String country){
@@ -52,23 +53,26 @@ public class CountryService {
 
     }
 
-    public List<Country> getCountriesByContinentPopulation(String continent, long population){
+    public List<String> getCountriesByContinentPopulation(String continent, long population){
         return countries.stream()
-                .filter(c -> c.getContinent().equals(continent) && c.getPopulation() == population)
+                .filter(c -> c.getContinent().equals(continent) && c.getPopulation() > population)
+                .map(Country::getName)
                 .collect(Collectors.toList());
     }
 
-    public List<Country> getCountriesByNeighbours(String neighbour1, String neighbour2){
+    public List<String> getCountriesByNeighbours(String neighbour1, String neighbour2){
         return countries.stream()
                 .filter(c -> c.getNeighbour().contains(neighbour1))
                 .filter(Predicate.not(c -> c.getNeighbour().contains(neighbour2)))
+                .map(Country::getName)
                 .collect(Collectors.toList());
     }
 
-    public List<Country> getCountriesInContinentSorted(String continent){
+    public List<String> getCountriesInContinentSorted(String continent){
             return countries.stream()
                     .filter(c -> c.getContinent().equals(continent))
                     .sorted(Comparator.comparing(Country::getArea))
+                    .map(Country::getName)
                     .collect(Collectors.toList());
     }
 

@@ -5,11 +5,11 @@ public class Country {
     private final String name;
     private final String capital;
     private final Long population;
-    private final Long area;
+    private final long area;
     private final String continent;
     private final List<String> neighbour;
 
-    public Country(String name, String capital, Long population, Long area, String continent, List<String> neighbour) {
+    public Country(String name, String capital, long population, long area, String continent, List<String> neighbour) {
         this.name = name;
         this.capital = capital;
         this.population = population;
@@ -26,11 +26,11 @@ public class Country {
         return capital;
     }
 
-    public Long getPopulation() {
+    public long getPopulation() {
         return population;
     }
 
-    public Long getArea() {
+    public long getArea() {
         return area;
     }
 
